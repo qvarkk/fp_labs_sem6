@@ -8,4 +8,15 @@ const addTwoPolynoms = ([polynom_a, polynom_b]: Array<Array<number>>): Array<num
           )
 );
 
-console.log(addTwoPolynoms([[2, 2, 99], [3, 3, 4, 5]]));
+const rec = ([polynom_a, polynom_b]) => {
+  return _rec([polynom_a, polynom_b], [], Math.max(polynom_a.length - 1, polynom_b.length - 1));
+};
+
+const _rec = ([polynom_a, polynom_b]: Array<Array<number>>, res: Array<number>, i: number) => (
+  i < 0 
+    ? res
+    : _rec([polynom_a, polynom_b], [(polynom_a[i] || 0) + (polynom_b[i] || 0), ...res], i - 1)
+);
+
+
+console.log(rec([[2, 2, 99], [3, 3, 4, 5]]));
